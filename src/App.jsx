@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import UserProfile from "./pages/UserProfile";
 import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/user/:id" element={<UserProfile />} />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="stats" element={<p>📈 Stats Page</p>} />
+          <Route path="settings" element={<p>⚙️ Settings Page</p>} />
+        </Route>
+        
         {/* 👇 Fallback route */}
         <Route
           path="*"

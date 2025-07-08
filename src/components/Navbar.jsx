@@ -1,23 +1,51 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+const linkClass =
+  "px-3 py-2 rounded-md transition-all hover:bg-indigo-200 font-medium";
 
 const Navbar = () => {
   return (
-    <nav className="space-x-4 text-lg font-medium mb-8">
-      <Link to="/" className="text-blue-600 hover:underline">
+    <nav className="flex flex-wrap gap-4 mb-8 bg-white shadow p-4 rounded-md">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} bg-indigo-600 text-white` : linkClass
+        }
+      >
         Home
-      </Link>
-      <Link to="/about" className="text-blue-600 hover:underline">
+      </NavLink>
+      <NavLink
+        to="/about"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} bg-indigo-600 text-white` : linkClass
+        }
+      >
         About
-      </Link>
-      <Link to="/contact" className="text-blue-600 hover:underline">
+      </NavLink>
+      <NavLink
+        to="/contact"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} bg-indigo-600 text-white` : linkClass
+        }
+      >
         Contact
-      </Link>
-      <Link to="/user/101" className="text-green-600 hover:underline">
+      </NavLink>
+      <NavLink
+        to="/user/101"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} bg-green-600 text-white` : linkClass
+        }
+      >
         User 101
-      </Link>
-      <Link to="/user/202" className="text-green-600 hover:underline">
-        User 202
-      </Link>
+      </NavLink>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} bg-green-600 text-white` : linkClass
+        }
+      >
+        Dashboard
+      </NavLink>
     </nav>
   );
 };
