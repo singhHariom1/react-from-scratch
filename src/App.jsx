@@ -1,19 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Loader from "./components/Loader";
+import UserCard from "./components/UserCard";
 import "./index.css";
-import Header from "./components/Header";
-import Counter from "./components/Counter";
-import TailwindBanner from "./components/TailwindBanner";
 
-function App() {
-  const [count, setCount] = useState(0);
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://randomuser.me/api/")
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data.results[0]);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log("Failed to fetch user", err);
+        setLoading(false);
+      });
+  }, []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-indigo-100 to-purple-200 flex flex-col items-center justify-center px-4">
-      <Header />
-      <Counter count={count} setCount={setCount} />
-      <TailwindBanner />
+    <main className="min-h-screen bg-gradient-to-br from-sky-100 to-slate-200 flex items-center justify-center px-4">
+      {loading ? <Loader /> : <UserCard user={user} />}
     </main>
   );
-}
+};
 
 export default App;
