@@ -1,45 +1,35 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Loader from "./components/Loader";
-import UserCard from "./components/UserCard";
-import "./index.css";
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
-const App = () => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
-  const fetchUser = async () => {
-    try {
-      const response = await axios.get("https://randomuser.me/api/");
-      setUser(response.data.results[0]);
-      setLoading(false);
-      setError(null);
-    } catch (err) {
-      setError("Failed to load user. Please try again.");
-      setLoading(false);
-    }
-  };
-
+function App() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-sky-100 to-slate-200 flex flex-col items-center justify-center px-4">
-      {error && <p className="text-red-600 mb-4 font-medium">{error}</p>}
-      {loading ? <Loader /> : <UserCard user={user} />}
-      <button
-        onClick={() => {
-          setLoading(true);
-          fetchUser();
-        }}
-        className="mt-6 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md font-semibold shadow-md"
-      >
-        Fetch New User
-      </button>
-    </main>
+    <div className="min-h-screen flex flex-col items-center justify-start p-10 space-y-4 bg-gradient-to-br from-blue-100 to-cyan-200">
+      <nav className="space-x-4 text-lg font-medium">
+        <Link to="/" className="text-blue-600 hover:underline">
+          Home
+        </Link>
+        <Link to="/about" className="text-blue-600 hover:underline">
+          About
+        </Link>
+        <Link to="/contact" className="text-blue-600 hover:underline">
+          Contact
+        </Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        {/* 👇 Fallback route */}
+        <Route
+          path="*"
+          element={<h1 className="text-3xl font-bold">404 - Page Not Found</h1>}
+        />
+      </Routes>
+    </div>
   );
-};
+}
 
 export default App;
