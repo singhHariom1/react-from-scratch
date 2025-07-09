@@ -1,21 +1,27 @@
+import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const { isLoggedIn, login, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // Simulate login, then navigate
-    navigate("/user/999");
+  const handleClick = () => {
+    if (!isLoggedIn) {
+      login();
+      navigate("/dashboard");
+    } else {
+      logout();
+    }
   };
 
   return (
-    <div className="text-center space-y-4">
+    <div className="space-y-4 text-center">
       <h1 className="text-3xl font-bold">🏠 Home Page</h1>
       <button
-        onClick={handleLogin}
+        onClick={handleClick}
         className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
       >
-        Simulate Login → Go to User 999
+        {isLoggedIn ? "Logout" : "Login → Go to Dashboard"}
       </button>
     </div>
   );
