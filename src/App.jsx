@@ -6,6 +6,7 @@ import UserProfile from "./pages/UserProfile";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
+import DashboardLayout from "./layouts/DashboardLayout";
 
 function App() {
   return (
@@ -21,12 +22,18 @@ function App() {
           path="/dashboard"
           element={
             <PrivateRoute>
-              <Dashboard />
+              <DashboardLayout />
             </PrivateRoute>
           }
         >
-          <Route path="stats" element={<p>📈 Stats Page</p>} />
-          <Route path="settings" element={<p>⚙️ Settings Page</p>} />
+          <Route
+            path="stats"
+            element={<p className="text-xl">📈 Stats Page</p>}
+          />
+          <Route
+            path="settings"
+            element={<p className="text-xl">⚙️ Settings Page</p>}
+          />
         </Route>
 
         {/* 👇 Fallback route */}
