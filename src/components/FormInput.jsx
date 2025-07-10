@@ -3,6 +3,7 @@ const FormInput = ({
   name,
   value,
   onChange,
+  onBlur,
   placeholder,
   error,
 }) => {
@@ -13,6 +14,7 @@ const FormInput = ({
         name={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         placeholder={placeholder}
         className={`w-full border p-2 rounded ${
           error ? "border-red-500" : "border-gray-300"

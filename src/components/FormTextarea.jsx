@@ -1,10 +1,18 @@
-const FormTextarea = ({ name, value, onChange, placeholder, error }) => {
+const FormTextarea = ({
+  name,
+  value,
+  onChange,
+  onBlur,
+  placeholder,
+  error,
+}) => {
   return (
     <div>
       <textarea
         name={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         placeholder={placeholder}
         rows={4}
         className={`w-full border p-2 rounded ${

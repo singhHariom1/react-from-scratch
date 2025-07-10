@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
+import toast from "react-hot-toast";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,13 @@ const ContactForm = () => {
 
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
+  const [touched, setTouched] = useState({});
+
+  const handleBlur = (e) => {
+    const { name } = e.target;
+
+    setTouched((prev) => ({ ...prev, [name]: true }));
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,8 +48,9 @@ const ContactForm = () => {
     if (!isFormValid) return;
 
     console.log("📝 Form submitted:", formData);
-    alert("Form submitted! Check console.");
+    toast.success("Message sent successfully! ✅");
     setFormData({ name: "", email: "", message: "" });
+    setTouched({});
   };
 
   return (
@@ -56,19 +65,20 @@ const ContactForm = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          onBlur={handleBlur}
           placeholder="Your name"
-          error={errors.name}
+          error={touched.name && errors.name}
         />
       </div>
 
       <div>
         <FormInput
-          type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
+          onBlur={handleBlur}
           placeholder="Your email"
-          error={errors.email}
+          error={touched.email && errors.email}
         />
       </div>
 
@@ -77,7 +87,8 @@ const ContactForm = () => {
         placeholder="Your message"
         value={formData.message}
         onChange={handleChange}
-        error={errors.message}
+        onBlur={handleBlur}
+        error={touched.message && errors.message}
       />
 
       <button
