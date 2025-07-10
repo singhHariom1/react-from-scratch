@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import FormInput from "./FormInput";
+import FormTextarea from "./FormTextarea";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -50,42 +52,33 @@ const ContactForm = () => {
       <h2 className="text-2xl font-bold text-center">📬 Contact Us</h2>
 
       <div>
-        <input
-          type="text"
+        <FormInput
           name="name"
-          placeholder="Your name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full border p-2 rounded"
+          placeholder="Your name"
+          error={errors.name}
         />
-        {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
       </div>
 
       <div>
-        <input
+        <FormInput
           type="email"
           name="email"
-          placeholder="Your email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full border p-2 rounded"
+          placeholder="Your email"
+          error={errors.email}
         />
-        {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
       </div>
 
-      <div>
-        <textarea
-          name="message"
-          placeholder="Your message"
-          rows={4}
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-        />
-        {errors.message && (
-          <p className="text-red-500 text-sm">{errors.message}</p>
-        )}
-      </div>
+      <FormTextarea
+        name="message"
+        placeholder="Your message"
+        value={formData.message}
+        onChange={handleChange}
+        error={errors.message}
+      />
 
       <button
         type="submit"
