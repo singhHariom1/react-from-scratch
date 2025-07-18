@@ -31,6 +31,14 @@ const Navbar = () => {
         Contact
       </NavLink>
       <NavLink
+        to="/counter"
+        className={({ isActive }) =>
+          isActive ? `${linkClass} bg-indigo-600 text-white` : linkClass
+        }
+      >
+        Counter
+      </NavLink>
+      <NavLink
         to="/user/101"
         className={({ isActive }) =>
           isActive ? `${linkClass} bg-green-600 text-white` : linkClass

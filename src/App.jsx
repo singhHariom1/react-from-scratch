@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
+import UseReducerCounter from "./pages/UseReducerCounter";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/user/:id" element={<UserProfile />} />
+        <Route path="/counter" element={<UseReducerCounter />} />
         <Route
           path="/dashboard"
           element={
