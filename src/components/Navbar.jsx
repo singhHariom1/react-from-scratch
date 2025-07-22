@@ -49,6 +49,14 @@ const Navbar = () => {
         Counter
       </NavLink>
       <NavLink
+        to="/performance"
+        className={({ isActive }) =>
+          isActive ? `${baseLinkClass} ${activeClass}` : baseLinkClass
+        }
+      >
+        Performance
+      </NavLink>
+      <NavLink
         to="/user/101"
         className={({ isActive }) =>
           isActive ? `${baseLinkClass} ${activeClass}` : baseLinkClass

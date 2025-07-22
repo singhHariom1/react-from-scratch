@@ -10,6 +10,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import UseReducerCounter from "./pages/UseReducerCounter";
 import { useTheme } from "./context/ThemeContext";
 import Profile from "./components/Profile";
+import Performance from "./pages/Performance";
 
 function App() {
   const { isDark } = useTheme();
@@ -30,6 +31,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/user/:id" element={<UserProfile />} />
         <Route path="/counter" element={<UseReducerCounter />} />
+        <Route path="/performance" element={<Performance />} />
         <Route
           path="/dashboard"
           element={
