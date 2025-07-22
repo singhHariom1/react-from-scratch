@@ -9,6 +9,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
 import UseReducerCounter from "./pages/UseReducerCounter";
 import { useTheme } from "./context/ThemeContext";
+import Profile from "./components/Profile";
 
 function App() {
   const { isDark } = useTheme();
@@ -45,6 +46,7 @@ function App() {
             path="settings"
             element={<p className="text-xl">⚙️ Settings Page</p>}
           />
+          <Route path="profile" element={<Profile />} />
         </Route>
 
         <Route

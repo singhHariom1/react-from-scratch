@@ -23,6 +23,14 @@ const DashboardLayout = () => {
           >
             Settings
           </NavLink>
+          <NavLink
+            to="profile"
+            className={({ isActive }) =>
+              isActive ? "text-yellow-300 underline" : "text-white"
+            }
+          >
+            Profile
+          </NavLink>
         </div>
       </aside>
 

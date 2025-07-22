@@ -11,6 +11,9 @@ const Dashboard = () => {
         <NavLink to="settings" className="text-blue-600 hover:underline">
           Settings
         </NavLink>
+        <NavLink to="profile" className="text-blue-600 hover:underline">
+          Profile
+        </NavLink>
       </div>
       <Outlet /> {/* This is where the child routes will be rendered */}
     </div>
